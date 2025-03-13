@@ -31,8 +31,6 @@ class LoadStreamLitUI():
         st.session_state.IsFetchButtonClicked = False
         st.session_state.IsSDLC = False
         
-        
-
         with st.sidebar:
             # Get options from config
             llm_options = self.config.get_llm_option()
@@ -59,6 +57,4 @@ class LoadStreamLitUI():
             if "state" not in st.session_state:
                 st.session_state.state = self.initialize_session()
             
-            
-        
         return self.user_controls   
