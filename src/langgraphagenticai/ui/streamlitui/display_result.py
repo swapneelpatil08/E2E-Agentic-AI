@@ -2,7 +2,7 @@ import streamlit as st
 import os
 from datetime import date
 
-from langchain_core.messages import AIMessage, HumanMessage
+from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 
 
 class DisplayResultsStreamlit:
@@ -24,3 +24,20 @@ class DisplayResultsStreamlit:
                         st.write(user_message)
                     with st.chat_message("assistant"):
                         st.write(value["messages"].content)
+        elif usecase =="Chatbot with Tools":
+            initial_state = {"messages": [user_message]}
+            res = graph.invoke(initial_state)
+            for message in res["messages"]:
+                if type(message) == HumanMessage:
+                    with st.chat_message("user"):
+                        st.write(message.content)
+                elif type(message) == ToolMessage:
+                    with st.chat_message("ai"):
+                        st.write("Tool call starts")
+                        st.write(message.content)
+                        st.write("Tool call ends")
+                elif type(message) == AIMessage and message.content:
+                    with st.chat_message("assistant"):
+                        st.write(message.content)
+            
+

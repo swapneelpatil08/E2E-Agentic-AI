@@ -50,7 +50,6 @@ def load_langgraph_agenticai_app():
                 graph_builder=Graph(model)
                 try:
                     graph = graph_builder.setup_graph(usecase)
-                    print("Graph created")
                     DisplayResultsStreamlit(usecase,graph,user_message).display_results()
                 except Exception as e:
                     st.error(f"Error: Graph setup failed - {e}")
