@@ -22,5 +22,5 @@ jobs:
 
       - name: Push to hub
         env:
-          HF_PUSH_CODE: ${{ secret.HF_PUSH_CODE }}
+          HF_PUSH_CODE: ${{ secrets.HF_PUSH_CODE }}
         run: git push --force https://swapy08:$HF_PUSH_CODE@huggingface.co/spaces/swapy08/E2E-Agentic-AI main
